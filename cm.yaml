@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: myconfig
+data:
+  city: NY
+  country: USA
+  dburl: https://127.0.0.1:46253

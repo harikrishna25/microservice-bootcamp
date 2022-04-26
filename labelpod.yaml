@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: helloapp
+  labels:
+    app: hello
+    city: Bangalore
+    country: India
+    company: IBM
+spec:
+  containers:
+  - name: helloapp
+    image: gcr.io/google-samples/hello-app:1.0

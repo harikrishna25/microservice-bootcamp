@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hellov1
+spec:
+  selector:
+    matchLabels:
+      app: hellov1
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: hellov1
+    spec:
+      containers:
+      - name: hellov1
+        image: gcr.io/google-samples/hello-app:1.0
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hellov1
+spec:
+  selector:
+    app: hellov1
+  ports:
+  - port: 80
+    targetPort: 8080

@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: currencyconversion
+spec:
+  selector:
+    matchLabels:
+      app: currencyconversion
+  template:
+    metadata:
+      labels:
+        app: currencyconversion
+    spec:
+      containers:
+      - name: currencyconversion
+        image: nharikrishna25/currencyconversion
+        ports:
+        - containerPort: 80
+        env:
+        - name: CONVERSIONURL
+          valueFrom:
+            configMapKeyRef:
+              name: currency-config
+              key: CONVERSIONURL
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: currencyconversion
+spec:
+  type: NodePort
+  selector:
+    app: currencyconversion
+  ports:
+  - port: 80
+    targetPort: 9001
+    nodePort: 32002
